@@ -76,10 +76,10 @@ python3 source venv/bin/activate
 1.  **Clone the repository** to your Raspberry Pi.
 2.  **Navigate** to the project folder.
 3.  **Run the script**:
-*   **Note**: if you made a python virtual enviroment to use pip previously you will need to source the virtual enviroment before runnning.
     ```bash
     python3 main.py
     ```
+*   **Note**: if you made a python virtual enviroment to use pip previously you will need to source the virtual enviroment before runnning.
 
 ### Safety Features
 * **Graceful Shutdown:** Press `Ctrl+C` to stop. The script will send a 'q' signal to FFmpeg to ensure the video file is finalized and not corrupted.
@@ -87,13 +87,13 @@ python3 source venv/bin/activate
 
 ---
 
-## 📊 Output Data
+## Output Data
 After a session, you will find two main files in the directory:
 1.  `output.mp4`: The recorded video (720p at 60fps).
 2.  `telemetry.json`: A timestamped log of all sensor readings including GPS, altitude, and G-force.
 
 ---
 
-## 🔧 Customization
+## Customization
 * **Change Sensors:** If you are using a BMP390 instead of a 280, simply swap the import in `main.py` from `from bmp280 import BMP280` to `from bmp390 import BMP390`.
 * **Adjust Thresholds:** You can modify the battery shutdown percentage in the `while running` loop inside `main.py`.
