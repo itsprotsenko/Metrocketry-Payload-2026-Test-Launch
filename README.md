@@ -83,7 +83,7 @@ python3 source venv/bin/activate
 
 ### Safety Features
 * **Graceful Shutdown:** Press `Ctrl+C` to stop. The script will send a 'q' signal to FFmpeg to ensure the video file is finalized and not corrupted.
-* **Battery Protection:** If the UPS detects the battery falling below **50%**, the system will automatically stop recording and shut down the script to prevent data loss or SD card corruption.
+* **Battery Protection:** If the UPS detects the battery falling below **10%**, the system will automatically stop recording and shut down the script to prevent data loss or SD card corruption.
 
 ---
 

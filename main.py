@@ -46,7 +46,7 @@ def main():
             # Check Battery Shutdown Condition
             battery_pct = ups_data.get("percentage", 100)
 
-            if 0 < battery_pct < 50:
+            if 0 < battery_pct < 10:
                 print(f"!!! Battery Low ({battery_pct}%). Shutting down system safely...")
                 running = False
                 continue # Skip logging and sleep to exit immediately

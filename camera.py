@@ -1,6 +1,5 @@
 import subprocess
 import os
-import signal
 
 class Camera:
     def __init__(self, device="/dev/video0", output_file="output.mp4"):
@@ -23,11 +22,11 @@ class Camera:
             "ffmpeg", "-y",
             "-f", "v4l2",
             "-input_format", "mjpeg",
-            "-framerate", "60",
+            "-framerate", "30",
             "-video_size", "1280x720",
             "-i", self.device,
             "-c:v", "copy",
-            "-movflags", "+faststart",
+            "-movflags", "+frag_keyframe+empty_moov+default_base_moof",
             self.output_file
         ]
 
@@ -35,7 +34,6 @@ class Camera:
 
     def start_recording(self):
         print(f"Starting Video Recording: {self.output_file}")
-        # stdin=subprocess.PIPE allows us to send 'q' to stop FFmpeg gracefully
         self.process = subprocess.Popen(
             self.cmd,
             stdin=subprocess.PIPE,
@@ -48,10 +46,8 @@ class Camera:
         if self.process and self.process.poll() is None:
             print("Finalizing video file...")
             try:
-                # Sending 'q' tells FFmpeg to finish the file header and exit
                 self.process.communicate(input=b'q', timeout=5)
             except subprocess.TimeoutExpired:
-                # If it hangs, force kill it
                 self.process.kill()
                 print("Video process forced to stop.")
 
